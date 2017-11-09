@@ -1,4 +1,4 @@
-# Overview
+# 1/ Overview
 
 Différentes stratégies de permissions:
 
@@ -25,14 +25,15 @@ Différentes stratégies de permissions:
 - Typiquement utilisé pour des teams en interne, sans contribution externe
 - Il n'y a aucune restriction, ce sont les conventions établies par la team qui définissent les modes de travail
 
+# 2/ Basics
 
-## Initialisation d'un repo
+## Initialise
 
 `git init`
 
-## Cloner un repo existant
+## Clone
 
-`git clone repo`
+`git clone <repo>`
 
 ## Add files
 
@@ -48,7 +49,7 @@ DO NOT AMEND PUBLIC COMMITS
 
 - amend a commit: say you forgot to add a file in your commit, don't reset, amend: `git add missig file && git commit --amend` (can be used to just change the commit message as well) 
 
-# Before we start
+# 3/ Before we start
 
 Here is a git log command that I find very usefull and I recommend setting up as an alias in your .gitconfig.
 
@@ -58,9 +59,13 @@ Here is a git log command that I find very usefull and I recommend setting up as
   lga = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
 ```
 
-# Merge vs Rebase
+# 4/ Gitflow
 
-## Merge
+  Quick overview
+
+# 5/ Merge vs Rebase
+
+## 5.1/ Merge
 
 [Demo](https://github.com/olibob/tutogit)
 
@@ -81,7 +86,7 @@ To get changes into your branch ()
 
 Merging is a way to get the changes from the main branch in your feature branch.
 
-## Rebase
+## 5.2/ Rebase
 
 Pros (if merging is fast forward):
 - removes unecessary merge commits
@@ -129,7 +134,7 @@ Tip:
 - Rebase and Pull Request: if you do a pull request, the branch is public! You know what this means (no more rebase).
 - if you merge (fast forward after a rebase, you'll have a linear history without merge commits) (demo: )
 
-## Checkout & Reset & Revert
+# 6/ Checkout & Reset & Revert
 
 This re-writes the history, use with caution!
 
@@ -137,7 +142,7 @@ This re-writes the history, use with caution!
 
 We will work on master, we manage, lol :D
 
-### Checkout
+## 6.1/ Checkout
 
 - edit the C.txt file and add garbage to it, save
 - git registers the change: `git status`
@@ -150,7 +155,7 @@ Tip:
   - when moving to a commit, you'll be in detached mode
   - before adding commit in detached mode, create a branch. If you don't, you'll loose your work!
 
-### Reset
+## 6.2/ Reset
 
 DO NOT USE RESET ON PUBLIC BRANCHES
 
@@ -169,7 +174,7 @@ DO NOT USE RESET ON PUBLIC BRANCHES
 - to remove the commit, stage and get rid of the changes: `git reset --hard HEAD~1`
 - we're back to the previous commit, stage is empty, changes are gone
 
-### Revert
+## 6.3/ Revert
 
 When you want to remove commits on a public branch, revert the commit(s).
 
@@ -186,7 +191,7 @@ On any public branch, you will want to revert changes. This will add a new commi
 - This time, we'll revert a feature with a twist
 - clone the repo
 
-Case 1: straight merge without rebase
+### 6.3.1/ Case 1: straight merge without rebase
 
 - in master branch: `git merge f/killer-feature`
 - Add a commit to master jsut to simulate work as continued `touch F.txt && git add F.txt && git commit -m "F" F.txt`
@@ -203,7 +208,7 @@ Case 1: straight merge without rebase
 - you can now merge the branch to integrate the fix: `git merge f/killer-feature`
 - all good, back to normal workflow
 
-Case 2: straight merge, with rebase
+### 6.3.2/ Case 2: straight merge, with rebase
 
 - clone again
 - in master branch: `git merge f/killer-feature`
@@ -220,7 +225,7 @@ Case 2: straight merge, with rebase
   - switch to master: `git checkout master`
   - merge the new feature: `git merge f/killer-feature-rework`
 
-Case 3: rebase, merge fast forward, fix
+### 6.3.3/ Case 3: rebase, merge fast forward, fix
 - clone again
 - in feature branch: `git rebase f/killer-feature`
 - switch to the feature branch
@@ -242,7 +247,7 @@ Case 3: rebase, merge fast forward, fix
 - now we'll integrate the fix: `git merge f/killer-feature-rework`
 - and we're done
 
-## Log
+# 7/ Log
 
 - See stats: `git log --stat`
 - See patches: `git log -p`
