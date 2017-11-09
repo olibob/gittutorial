@@ -179,6 +179,7 @@ DO NOT USE RESET ON PUBLIC BRANCHES
 When you want to remove commits on a public branch, revert the commit(s).
 
 [Demo](https://github.com/olibob/tutogi3)
+
 [Good reference](https://github.com/git/git/blob/master/Documentation/howto/revert-a-faulty-merge.txt)
 
 On any public branch, you will want to revert changes. This will add a new commit revert the changes from the selected commit(s). This way you do not disrupt the team workflow.
