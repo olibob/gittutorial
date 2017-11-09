@@ -73,7 +73,7 @@ To get changes into your branch ()
 
 
 - in the feature branch, merge in the changes from master: `git merge master`
-- add a new commit to master: `touch AA.txt && git add AA.txt && git commit -m "Add AA"` and `touch BB.txt && git add BB.txt && git commit -m "Add BB"`
+- switch to master and add a new commit to master: `touch AA.txt && git add AA.txt && git commit -m "Add AA"` and `touch BB.txt && git add BB.txt && git commit -m "Add BB"`
 - add a new commit to feature: `touch G.txt && git add G.txt && git commit -m "Add G"`
 - merge master in the feature branch again
 - show that the feature branch has master content, but the opposite is not true, master does not have the feature content
@@ -84,7 +84,7 @@ To get changes into your branch ()
 - now do a no fast forward and get a clearer tree view: `git merge --no-ff f/Add-E`
 - now the tree shows all stages
 
-Merging is a way to get the changes from the main branch in your feature branch.
+Merging can be a way to get the changes from the main branch in your feature branch.
 
 ## 5.2/ Rebase
 
@@ -107,6 +107,8 @@ Cons:
 - now we can re-arrange the history as we see fit
   - re-order commits (demo)
   - squash commits that belong together (demo squash)
+- switch to master and merge the branch: `git checkout master` and `git merge -no-ff f/add-E`
+
 
 What happens if you rebase a public branch on a feature branch?
 - You change the history of the public branch.
@@ -114,13 +116,16 @@ What happens if you rebase a public branch on a feature branch?
 - if you pull from origin, you'll create a merge commit
 - now you could push, efectively changing things for the team: the public branch history
 - congratulations, you made everything super confusing for the rest of the team ;-)
-- oh and do not force push if it's not your private branch!
+- oh and do not force push if, it's not your private branch!
 - never force push on a public branch!
+
+TODO: force push
 
 Tip: Cleanup rebasing
 
 You can cleanup your commits in your private branch by rebasing on a commit (demo)
 
+- start fresh and switch to the feature branch
 - add a new commit: `touch G.txt && git add G.txt && git commit -m "Add G"`
 - now we have 3 commits in the private branch
 - let's pretend F is just a fix for what was wrong in E and we want to not show this fix to the rest of the world when we contribute our code
@@ -178,6 +183,10 @@ DO NOT USE RESET ON PUBLIC BRANCHES
 
 On a public branch, you may want to revert changes. This will add a new revert commit(s). This is a way to remove faulty code without disrupting team workflow. If you can avoid it, do so.
 
+[Demo](https://github.com/olibob/tutogi3)
+
+Content of file A is the target.
+
 - Revert the last commit: `git revert HEAD`
 - Notice how the file is empty again
 - Revert the revert: `git revert HEAD` (your back with the file's content)
@@ -193,9 +202,11 @@ On a public branch, you may want to revert changes. This will add a new revert c
 
 - in master branch: `git merge f/killer-feature`
 - Add a commit to master jsut to simulate work as continued `touch F.txt && git add F.txt && git commit -m "F" F.txt`
-- if you can fix it by moving forward, do so. If you do not want the code to be shared, you need to make it disappear (CI broken, making sure it does not land in a release, ...) 
+- if you can fix things by moving forward, do so. If you do not want the code to be shared, you need to make it disappear (CI broken, making sure it does not land in a release, ...) 
 - we need to re-work the feature because it's bugged. What do?
-- revert the feature (if no one depends on it yet and you don't want it in the code base): `git revert <merge commit> -m 1` (m 1 because the parent we want to rebase on is master - look at the git log to view the 2 parents)
+- revert the feature (if no one depends on it yet and you don't want it in the code base): `git revert <merge commit>`
+- this fails, why?
+- what we need to do: `git revert <merge commit> -m 1` (m 1 because the parent we want to rebase on is master - look at the git log to view the 2 parents)
 - all changes and/or files disapear, the history stays! Notice that the history stays! (bisect)
 - to re-work the feature, we can go back into it: `git checkout f/killer-feature`
 - edit end.txt for instance, input what ever you want to generate a change.
