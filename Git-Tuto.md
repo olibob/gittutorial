@@ -236,7 +236,6 @@ Content of file A is the target.
 
 ### 6.3.3/ Case 3: rebase, merge fast forward, fix
 - clone again
-- in feature branch: `git rebase f/killer-feature`
 - switch to the feature branch
 - rebase the feature branch on master (notice the new commit after HEAD on master)
 - switch to master
@@ -244,9 +243,9 @@ Content of file A is the target.
 - `git log --oneline` : notice there is no merge commit this time
 - Add a commit to master jsut to simulate work as continued `touch F.txt && git add F.txt && git commit -m "F" F.txt`
 - if you need to revert now, you have to know which commits need to be reverted!!!
-- `git revert 07f9de1..9d6d51e` (I know the exact commits, so let's revert them)
+- `git revert 07f9de1..<last commit to revert>`
 - now you need to include the faulty code in a new branch, to do so, we'll checkout the SHA-1 of the faulty code in a new branch
-- `git co -b f/killer-feature-rework 9d6d51e`
+- `git co -b f/killer-feature-rework <last faulty code commit before revert>`
 - edit end.txt
 - add end.txt
 - commit it
