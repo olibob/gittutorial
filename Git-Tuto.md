@@ -176,19 +176,15 @@ DO NOT USE RESET ON PUBLIC BRANCHES
 
 ## 6.3/ Revert
 
-When you want to remove commits on a public branch, revert the commit(s).
-
-[Demo](https://github.com/olibob/tutogi3)
-
-[Good reference](https://github.com/git/git/blob/master/Documentation/howto/revert-a-faulty-merge.txt)
-
-On any public branch, you will want to revert changes. This will add a new commit revert the changes from the selected commit(s). This way you do not disrupt the team workflow.
+On a public branch, you may want to revert changes. This will add a new revert commit(s). This is a way to remove faulty code without disrupting team workflow. If you can avoid it, do so.
 
 - Revert the last commit: `git revert HEAD`
 - Notice how the file is empty again
 - Revert the revert: `git revert HEAD` (your back with the file's content)
 
 [Demo](https://github.com/olibob/tutogit4)
+
+[Good reference](https://github.com/git/git/blob/master/Documentation/howto/revert-a-faulty-merge.txt)
 
 - This time, we'll revert a feature with a twist
 - clone the repo
