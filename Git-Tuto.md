@@ -39,6 +39,10 @@ Différentes stratégies de permissions:
 
 `git add file *.txt`
 
+You can do it interactively: `git add -i`
+
+You can add only parts of all your changes: `git add -p [file(s)]`
+
 ## Commit
 
 - interactive message: `git commit`
