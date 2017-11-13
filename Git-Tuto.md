@@ -162,7 +162,7 @@ Tip:
 
 - checkout can be used to move through commits (and branches)
   - when moving to a commit, you'll be in detached mode
-  - before adding commit in detached mode, create a branch. If you don't, you'll loose your work!
+  - before adding commit in detached mode, create a branch. If you don't, you can loose your work!
 
 ## 6.2/ Reset
 
